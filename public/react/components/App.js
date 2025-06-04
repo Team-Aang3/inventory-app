@@ -4,7 +4,6 @@ import { Item } from "./Item";
 import { ItemList } from "./ItemList";
 import { AddForm } from "./AddForm";
 import { UpdateForm } from "./UpdateForm";
-import './Item.css'
 
 // Prepend the API URL to any fetch calls.
 import apiURL from "../api";
