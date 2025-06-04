@@ -35,6 +35,13 @@ img {
   width: 20rem;
   border-radius: 10px;
   overflow: hidden;
+  /* border: 2px solid grey; */
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  /* box-shadow: 0 0 0 1px #0077cc; */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .item-name {
@@ -54,10 +61,15 @@ img {
 
 .details-btn {
   cursor: pointer;
-  padding: 8px 14px;
+  padding: 0.6rem 1.2rem;
   border-radius: 6px;
+  border: none;
+  background-color: #ccc;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .details-btn:hover {
   text-decoration: underline;
+  background-color: #b3b3b3;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
