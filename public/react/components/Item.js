@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import apiURL from "../api";
-import "../styles/Forms.css";
+import "../styles/Item.css";
 
 export function Item() {
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const { itemId } = useParams();
   const [item, setItem] = useState(null);
   const apiURLWithId = `${apiURL}/items/${itemId}`;
@@ -28,21 +28,19 @@ const navigate = useNavigate()
     fetchItem();
   }, [itemId]);
 
- 
-  return (
-    item ? (
-      <div>
-        <div>{item.name}</div>
-        <div>{item.category}</div>
-        <div>${item.price}</div>
-        <div>{item.description}</div>
-        <img src={item.image} alt={item.name} />
-        <button onClick={() => navigate(-1)}>Back</button>
-        <button onClick={() => navigate(`/update/${itemId}`)}>Edit</button>
-        <button onClick={handleDelete}>Delete</button>
-      </div>
-    ) : (
-      <div>Loading...</div>
-    )
+  return item ? (
+    <div>
+      <button onClick={() => navigate(-1)}>Back</button>
+      <button onClick={() => navigate(`/update/${itemId}`)}>Edit</button>
+      <div>{item.name}</div>
+      <div>{item.category}</div>
+      <div>${item.price}</div>
+      <div>{item.description}</div>
+      <img src={item.image} alt={item.name} />
+
+      <button onClick={handleDelete}>Delete</button>
+    </div>
+  ) : (
+    <div>Loading...</div>
   );
 }

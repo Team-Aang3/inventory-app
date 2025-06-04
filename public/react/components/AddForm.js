@@ -130,9 +130,14 @@ export function AddForm() {
           />
         </label>
 
-        <button type="submit" className="formBtn">
-          Add Item
-        </button>
+        <div className="formBtns">
+          <button type="submit" className="formBtn">
+            Add Item
+          </button>
+          <button onClick={() => nav("/")} className="formBtn">
+            Back to Items
+          </button>
+        </div>
       </form>
     </>
   );

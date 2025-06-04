@@ -4,7 +4,6 @@ import { Item } from "./Item";
 import { ItemList } from "./ItemList";
 import { AddForm } from "./AddForm";
 import { UpdateForm } from "./UpdateForm";
-import "./Item.css";
 
 // Prepend the API URL to any fetch calls.
 import apiURL from "../api";
@@ -28,7 +27,7 @@ function App() {
 
   return (
     <>
-      <h1>Inventory App</h1>
+      <h1 className="Title">Inventory App</h1>
       {/* Render the items */}
       <Routes>
         <Route path="/" element={<ItemList items={items} />} />
