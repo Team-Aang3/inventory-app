@@ -19,6 +19,7 @@ function App() {
     <>
       <h1>Inventory App</h1>
       {/* Render the items */}
+      <Item/>
       <Routes>
         <Route path="/" element={<ItemList />} />
         <Route path="/:itemId" element={<Item />} />

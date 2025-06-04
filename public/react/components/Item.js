@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import '../style.css'
 
 export function Item() {
   const { itemId } = useParams();
