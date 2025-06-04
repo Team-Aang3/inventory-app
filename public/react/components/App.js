@@ -33,7 +33,7 @@ function App() {
         <Route path="/" element={<ItemList items={items} />} />
         <Route path="/:itemId" element={<Item />} />
         <Route path="/add" element={<AddForm />} />
-        <Route path="/update" element={<UpdateForm />} />
+        <Route path="/update/:itemId" element={<UpdateForm />} />
       </Routes>
     </>
   );

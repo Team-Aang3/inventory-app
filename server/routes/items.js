@@ -16,18 +16,18 @@ router.get("/", async (req, res, next) => {
 });
 
 //GET item by id
- router.get('/items/:id', async (req, res) => {
-    try {
-      const item = await Item.findByPk(req.params.id)
-      if(item) {
-        res.json(item)
-      } else {
-        res.status(404).send('Item not found')
-      }
-    } catch (error) {
-      res.status(500).send('Server error')
+router.get("/items/:id", async (req, res) => {
+  try {
+    const item = await Item.findByPk(req.params.id);
+    if (item) {
+      res.json(item);
+    } else {
+      res.status(404).send("Item not found");
     }
-  })
+  } catch (error) {
+    res.status(500).send("Server error");
+  }
+});
 
 //POST new item
 router.post("/add", async (req, res) => {
@@ -51,7 +51,7 @@ router.post("/add", async (req, res) => {
 });
 
 //UPDATE existing item
-router.patch("/:itemId", async (req, res) => {
+router.put("/:itemId", async (req, res) => {
   try {
     //find item
     const item = await Item.findByPk(req.params.itemId);
