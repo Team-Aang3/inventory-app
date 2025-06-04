@@ -29,18 +29,30 @@ export function Item() {
   }, [itemId]);
 
   return item ? (
-    <div>
-      <button onClick={() => navigate(-1)}>Back</button>
-      <button onClick={() => navigate(`/update/${itemId}`)}>Edit</button>
-      <div>{item.name}</div>
-      <div>{item.category}</div>
-      <div>${item.price}</div>
-      <div>{item.description}</div>
-      <img src={item.image} alt={item.name} />
-
-      <button onClick={handleDelete}>Delete</button>
-    </div>
+    <div className="item-detail-card">
+      <img className="item-img" src={item.image} alt={item.name}/>
+       <h2 className="item-name">{item.name}</h2>
+       <p className="item-category">{item.category}</p>Add commentMore actions
+       <p className="item-price">${item.price}</p>
+      <p className="item-description">{item.description}</p>
+     
+      <button onClick={() => navigate(-1)} className="btn">Back</button>
+      <button onClick={() => navigate(`/update/${itemId}`)} className="btn">Edit</button>
+      <button onClick={handleDelete} className="btn">Delete</button> </div>
   ) : (
     <div>Loading...</div>
   );
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
