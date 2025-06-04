@@ -38,6 +38,12 @@
   min-height: 100px;
 }
 
+.formBtns {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
 .formBtn {
   margin-top: 1rem;
   padding: 0.75rem 1.5rem;

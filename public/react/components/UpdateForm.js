@@ -132,9 +132,14 @@ export function UpdateForm() {
           />
         </label>
 
-        <button type="submit" className="formBtn">
-          Update Item
-        </button>
+        <div className="formBtns">
+          <button type="submit" className="formBtn">
+            Update Item
+          </button>
+          <button onClick={() => nav("/")} className="formBtn">
+            Back to Items
+          </button>
+        </div>
       </form>
     </>
   );
