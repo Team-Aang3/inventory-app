@@ -11,9 +11,19 @@ import apiURL from "../api";
 
 function App() {
   const [items, setItems] = useState([]);
+  async function fetchItems() {
+    try {
+      const response = await fetch(`${apiURL}/items`);
+      const itemsData = await response.json();
+      setItems(itemsData);
+    } catch (err) {
+      console.log("Oh no an error! ", err);
+    }
+  }
 
   useEffect(() => {
     // Fetch the items
+    fetchItems();
   }, []);
 
   return (
@@ -22,10 +32,10 @@ function App() {
       {/* Render the items */}
       <Item/>
       <Routes>
-        <Route path="/" element={<ItemList />} />
+        <Route path="/" element={<ItemList items={items} />} />
         <Route path="/:itemId" element={<Item />} />
         <Route path="/add" element={<AddForm />} />
-        <Route path="/update" element={<UpdateForm />} />
+        <Route path="/update/:itemId" element={<UpdateForm />} />
       </Routes>
     </>
   );
