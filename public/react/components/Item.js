@@ -3,12 +3,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import apiURL from "../api";
 import "../styles/Forms.css";
 
-
 export function Item() {
 const navigate = useNavigate()
   const { itemId } = useParams();
   const [item, setItem] = useState(null);
-  const apiURLWithId = `${apiURL}/items/${itemId}`
+  const apiURLWithId = `${apiURL}/items/${itemId}`;
   const handleDelete = async () => {
     await fetch(apiURLWithId, {
       method: "DELETE",

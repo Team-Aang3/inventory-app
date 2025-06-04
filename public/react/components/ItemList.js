@@ -9,6 +9,11 @@ export function ItemList({ items }) {
   return (
     <>
       <div>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <button onClick={() => navigate("/add")} className="add-btn">
+            +
+          </button>
+        </div>
         <ul className="card-list">
           {items.map((item) => {
             return (
