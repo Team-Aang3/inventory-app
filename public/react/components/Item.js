@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import '../style.css'
+import apiURL from "../api";
+
 
 export function Item() {
   const { itemId } = useParams();
   const [item, setItem] = useState(null);
+  const apiURLWithId = `${apiURL}/items/${itemId}`
   const handleDelete = async () => {
     await fetch(`/api/items/${itemId}`, {
       method: "DELETE",
@@ -15,7 +17,7 @@ export function Item() {
   useEffect(() => {
     async function fetchItem() {
       try {
-        const response = await fetch(`/api/items/${itemId}`);
+        const response = await fetch(apiURLWithId);
         const itemData = await response.json();
         setItem(itemData);
       } catch (err) {
