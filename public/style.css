@@ -59,6 +59,22 @@ img {
   width: 10rem;
 }
 
+.add-btn {
+  cursor: pointer;
+  padding: 0.3rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  background-color: #ccc;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 2rem;
+  margin-right: 30px;
+}
+
+.add-btn:hover {
+  background-color: #b3b3b3;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 .details-btn {
   cursor: pointer;
   padding: 0.6rem 1.2rem;

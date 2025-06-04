@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import apiURL from "../api";
 
-
 export function Item() {
   const { itemId } = useParams();
   const [item, setItem] = useState(null);
-  const apiURLWithId = `${apiURL}/items/${itemId}`
+  const apiURLWithId = `${apiURL}/items/${itemId}`;
   const handleDelete = async () => {
     await fetch(`/api/items/${itemId}`, {
       method: "DELETE",
