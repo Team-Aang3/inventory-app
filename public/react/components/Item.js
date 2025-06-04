@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import apiURL from "../api";
 import "../styles/Item.css";
 
-
 export function Item() {
+  const navigate = useNavigate();
   const { itemId } = useParams();
   const [item, setItem] = useState(null);
-  const apiURLWithId = `${apiURL}/items/${itemId}`
+  const apiURLWithId = `${apiURL}/items/${itemId}`;
   const handleDelete = async () => {
-    await fetch(`/api/items/${itemId}`, {
+    await fetch(apiURLWithId, {
       method: "DELETE",
     });
     navigate("/items");
@@ -28,19 +28,19 @@ export function Item() {
     fetchItem();
   }, [itemId]);
 
-  if (!item) return <div>Loading...</div>;
-  return (
+  return item ? (
+    <div>
+      <button onClick={() => navigate(-1)}>Back</button>
+      <button onClick={() => navigate(`/update/${itemId}`)}>Edit</button>
+      <div>{item.name}</div>
+      <div>{item.category}</div>
+      <div>${item.price}</div>
+      <div>{item.description}</div>
+      <img src={item.image} alt={item.name} />
 
-    <div className="item-detail-card">
-      <img className="item-img" src={item.image} alt={item.name}/>
-       <h2 className="item-name">{item.name}</h2>
-       <p className="item-category">{item.category}</p>
-       <p className="item-price">${item.price}</p>
-      <p className="item-description">{item.description}</p>
-     
-      <button onClick={() => navigate(-1)} className="nav-btn">Back</button>
-      <button onClick={() => navigate(`/update/${itemId}`)} className="edit-btn">Edit</button>
-      <button onClick={handleDelete} className="delete-btn">Delete</button>
+      <button onClick={handleDelete}>Delete</button>
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 }
