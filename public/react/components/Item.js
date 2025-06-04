@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import apiURL from "../api";
+import "../styles/Item.css";
 
 
 export function Item() {
@@ -29,15 +30,17 @@ export function Item() {
 
   if (!item) return <div>Loading...</div>;
   return (
-    <div>
-      <h2>{item.name}</h2>
-      <p>{item.category}</p>
-      <p>${item.price}</p>
-      <p>{item.description}</p>
-      <img src={item.image} alt={item.name} />
-      <button onClick={() => navigate(-1)}>Back</button>
-      <button onClick={() => navigate(`/update/${itemId}`)}>Edit</button>
-      <button onClick={handleDelete}>Delete</button>
+
+    <div className="item-detail-card">
+      <img className="item-img" src={item.image} alt={item.name}/>
+       <h2 className="item-name">{item.name}</h2>
+       <p className="item-category">{item.category}</p>
+       <p className="item-price">${item.price}</p>
+      <p className="item-description">{item.description}</p>
+     
+      <button onClick={() => navigate(-1)} className="nav-btn">Back</button>
+      <button onClick={() => navigate(`/update/${itemId}`)} className="edit-btn">Edit</button>
+      <button onClick={handleDelete} className="delete-btn">Delete</button>
     </div>
   );
 }
