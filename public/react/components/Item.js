@@ -1,1 +1,43 @@
-export function Item() {}
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import apiURL from "../api";
+
+
+export function Item() {
+  const { itemId } = useParams();
+  const [item, setItem] = useState(null);
+  const apiURLWithId = `${apiURL}/items/${itemId}`
+  const handleDelete = async () => {
+    await fetch(`/api/items/${itemId}`, {
+      method: "DELETE",
+    });
+    navigate("/items");
+  };
+
+  useEffect(() => {
+    async function fetchItem() {
+      try {
+        const response = await fetch(apiURLWithId);
+        const itemData = await response.json();
+        setItem(itemData);
+      } catch (err) {
+        console.log("Error retrieving item", err);
+      }
+    }
+    fetchItem();
+  }, [itemId]);
+
+  if (!item) return <div>Loading...</div>;
+  return (
+    <div>
+      <h2>{item.name}</h2>
+      <p>{item.category}</p>
+      <p>${item.price}</p>
+      <p>{item.description}</p>
+      <img src={item.image} alt={item.name} />
+      <button onClick={() => navigate(-1)}>Back</button>
+      <button onClick={() => navigate(`/update/${itemId}`)}>Edit</button>
+      <button onClick={handleDelete}>Delete</button>
+    </div>
+  );
+}

@@ -16,16 +16,17 @@ router.get("/", async (req, res, next) => {
 });
 
 //GET item by id
-router.get("/items/:id", async (req, res) => {
-  try {
-    const item = await Item.findByPk(req.params.id);
-    if (item) {
-      res.json(item);
-    } else {
-      res.status(404).send("Item not found");
-    }
-  } catch (error) {
-    res.status(500).send("Server error");
+
+ router.get('/:id', async (req, res) => {
+    try {
+      const item = await Item.findByPk(req.params.id)
+      if(item) {
+        res.json(item)
+      } else {
+        res.status(404).send('Item not found')
+      }
+    } catch (error) {
+      res.status(500).send('Server error')
   }
 });
 
