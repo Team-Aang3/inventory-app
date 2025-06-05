@@ -1,4 +1,7 @@
 ![logo](https://user-images.githubusercontent.com/44912347/202296600-c5f247d6-9616-49db-88f0-38433429d781.jpg)
+# Team Members
+
+Lauren Balch, Madison DeGrezia, Jordan Harris
 
 # Wireframe link
 
@@ -9,10 +12,12 @@
 Inventory App is a full-stack web application that interacts with a RESTful API to manage and display product inventory. Users can browse the full product list, view detailed information for individual items, add new products, or update existing ones using intuitive forms. The app also supports searching by item name or category for quick and efficient navigation.
 
 ## Getting Started
+After forking and cloning the repository, run the following:
 
 1. `npm install`
-2. `npm run server-dev`
-3. In a seperate terminal, `npm run client-dev`
+2. `npm run seed` (runs the seed file)
+3. `npm run server-dev`
+4. In a seperate terminal, `npm run client-dev`
 
 ## Inventory App “Tiers”
 
