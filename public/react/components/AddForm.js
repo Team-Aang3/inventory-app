@@ -77,7 +77,6 @@ export function AddForm() {
             value={formData.name}
             placeholder="Enter item name"
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
           />
         </label>
 
@@ -89,7 +88,6 @@ export function AddForm() {
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
             }
-            required
           />
         </label>
 
@@ -102,7 +100,6 @@ export function AddForm() {
             onChange={(e) =>
               setFormData({ ...formData, price: parseFloat(e.target.value) })
             }
-            required
           />
         </label>
 
@@ -115,7 +112,6 @@ export function AddForm() {
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
-            required
           />
         </label>
 

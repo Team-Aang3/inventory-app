@@ -1,15 +1,24 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export function ItemList({ items }) {
   const navigate = useNavigate();
+  const [searchItem, setSearchItem] = useState("");
 
   const handleClick = (id) => {
     navigate(`/${id}`);
   };
-  return (
+  return items ? (
     <>
       <div>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div className="search-add-container">
+          <input
+            type="text"
+            placeholder="Search by name or color..."
+            value={searchItem}
+            onChange={(e) => setSearchItem(e.target.value)}
+            className="search-input"
+          />
           <button onClick={() => navigate("/add")} className="add-btn">
             +
           </button>
@@ -33,5 +42,7 @@ export function ItemList({ items }) {
         </ul>
       </div>
     </>
+  ) : (
+    <div>Loading...</div>
   );
 }
