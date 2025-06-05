@@ -17,21 +17,21 @@ router.get("/", async (req, res, next) => {
 
 //GET item by id
 
- router.get('/:id', async (req, res) => {
-    try {
-      const item = await Item.findByPk(req.params.id)
-      if(item) {
-        res.json(item)
-      } else {
-        res.status(404).send('Item not found')
-      }
-    } catch (error) {
-      res.status(500).send('Server error')
+router.get("/:id", async (req, res, next) => {
+  try {
+    const item = await Item.findByPk(req.params.id);
+    if (item) {
+      res.json(item);
+    } else {
+      res.status(404).send("Item not found");
+    }
+  } catch (error) {
+    next(error);
   }
 });
 
 //POST new item
-router.post("/add", async (req, res) => {
+router.post("/add", async (req, res, next) => {
   try {
     //check if item already exists
     const item = await Item.findOne({ where: { name: req.body.name } });
@@ -47,12 +47,12 @@ router.post("/add", async (req, res) => {
     }
   } catch (error) {
     console.error("Error creating item:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    next(error);
   }
 });
 
 //UPDATE existing item
-router.put("/:itemId", async (req, res) => {
+router.put("/:itemId", async (req, res, next) => {
   try {
     //find item
     const item = await Item.findByPk(req.params.itemId);
@@ -69,7 +69,7 @@ router.put("/:itemId", async (req, res) => {
     res.status(200).json({ message: "Item Updated", updateItem });
   } catch (error) {
     console.error("Error updating item:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    next(error);
   }
 });
 
