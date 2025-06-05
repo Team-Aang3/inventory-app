@@ -52,13 +52,13 @@ export function Item() {
         <p className="item-price">${item.price}</p>
         <p className="item-description">{item.description}</p>{" "}
       </div>
-      <button onClick={() => navigate(-1)} className="btn">
+      <button onClick={() => navigate(-1)} className="btn-back">
         Back
       </button>
-      <button onClick={() => navigate(`/update/${itemId}`)} className="btn">
+      <button onClick={() => navigate(`/update/${itemId}`)} className="btn-edit">
         Edit
       </button>
-      <button onClick={handleDelete} className="btn" disabled={isDeleting}>
+      <button onClick={handleDelete} className="btn-delete" disabled={isDeleting}>
         {isDeleting ? "Deleting" : "Delete"}
       </button>
       {error && <div className="error-msg">{error}</div>}{" "}
