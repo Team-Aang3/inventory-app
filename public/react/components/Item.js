@@ -29,12 +29,12 @@ export function Item() {
   }, [itemId]);
 
   return item ? (
-    <div className="item-detail-card">
+    <div className="item-detail-card" style={{ display: 'flex', alignItems: 'flex-start'}}>
       <img className="item-img" src={item.image} alt={item.name}/>
-       <h2 className="item-name">{item.name}</h2>
-       <p className="item-category">{item.category}</p>Add commentMore actions
+       <div className='item-info'> <h2 className="item-name">{item.name}</h2>
+       <p className="item-category">Category: {item.category}</p>
        <p className="item-price">${item.price}</p>
-      <p className="item-description">{item.description}</p>
+      <p className="item-description">{item.description}</p> </div>
      
       <button onClick={() => navigate(-1)} className="btn">Back</button>
       <button onClick={() => navigate(`/update/${itemId}`)} className="btn">Edit</button>
