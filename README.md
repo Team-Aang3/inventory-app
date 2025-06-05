@@ -6,7 +6,7 @@
 
 # Inventory App
 
-You are a team of developers for an e-commerce company. The Engineering team is rebuilding their inventory tracking app from the ground up. Your team has been tasked with creating a Full-Sack (front and back end) RESTful CRUD application to track the items.
+Inventory App is a full-stack web application that interacts with a RESTful API to manage and display product inventory. Users can browse the full product list, view detailed information for individual items, add new products, or update existing ones using intuitive forms. The app also supports searching by item name or category for quick and efficient navigation.
 
 ## Getting Started
 
