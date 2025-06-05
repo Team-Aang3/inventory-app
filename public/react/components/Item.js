@@ -7,12 +7,23 @@ export function Item() {
   const navigate = useNavigate();
   const { itemId } = useParams();
   const [item, setItem] = useState(null);
+  const [error, setError] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false)
   const apiURLWithId = `${apiURL}/items/${itemId}`;
+
   const handleDelete = async () => {
+    setIsDeleting(true);
+    setError(null);
+    try{
     await fetch(apiURLWithId, {
       method: "DELETE",
     });
     navigate("/items");
+  } catch (err){
+    setError('Failed to delete item. Please try again.')
+  } finally {
+    setIsDeleting(false);
+  }
   };
 
   useEffect(() => {
@@ -22,7 +33,7 @@ export function Item() {
         const itemData = await response.json();
         setItem(itemData);
       } catch (err) {
-        console.log("Error retrieving item", err);
+        setError("Error retrieving item", err);
       }
     }
     fetchItem();
@@ -38,7 +49,8 @@ export function Item() {
      
       <button onClick={() => navigate(-1)} className="btn">Back</button>
       <button onClick={() => navigate(`/update/${itemId}`)} className="btn">Edit</button>
-      <button onClick={handleDelete} className="btn">Delete</button> </div>
+      <button onClick={handleDelete} className="btn" diasbled={isDeleting}>{isDeleting ? 'Deleting' : 'Delete'}</button>
+      {error && <div className="error-msg">{error}</div>} </div>
   ) : (
     <div>Loading...</div>
   );
