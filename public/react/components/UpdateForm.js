@@ -12,7 +12,7 @@ export function UpdateForm() {
     image: "",
   });
 
-  const [error, seteError] = useState("");
+  const [error, setError] = useState("");
   const nav = useNavigate();
   const { itemId } = useParams();
   const apiURLWithId = `${apiURL}/items/${itemId}`;
@@ -27,10 +27,10 @@ export function UpdateForm() {
       !formData.price ||
       !formData.category
     ) {
-      seteError("All fields are required.");
+      setError("All fields are required.");
       return;
     }
-    seteError(""); //clear previous errors
+    setError(""); //clear previous errors
 
     //post fetch to update item
     try {
@@ -60,6 +60,7 @@ export function UpdateForm() {
       nav(`/${data.updateItem.id}`);
     } catch (error) {
       console.error(error.message);
+      setError(error.message);
     }
   }
 

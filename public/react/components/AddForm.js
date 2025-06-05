@@ -25,7 +25,7 @@ export function AddForm() {
       !formData.price ||
       !formData.category
     ) {
-      setError("A;; fields are required.");
+      setError("All fields are required.");
       return;
     }
     setError(""); //clear prev errors
@@ -58,6 +58,7 @@ export function AddForm() {
       nav(`/${data.newItem.id}`);
     } catch (error) {
       console.error(error.message);
+      setError(error.message);
     }
   }
 
