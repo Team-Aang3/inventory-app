@@ -11,6 +11,9 @@ Lauren Balch, Madison DeGrezia, Jordan Harris
 
 Inventory App is a full-stack web application that interacts with a RESTful API to manage and display product inventory. Users can browse the full product list, view detailed information for individual items, add new products, or update existing ones using intuitive forms. The app also supports searching by item name or category for quick and efficient navigation.
 
+# Deployment link
+- https://inventory-app-crjj.onrender.com
+
 ## Getting Started
 After forking and cloning the repository, run the following:
 
