@@ -22,7 +22,7 @@ export function ItemList({ items }) {
         <div className="search-add-container">
           <input
             type="text"
-            placeholder="Search by name or color..."
+            placeholder="Search by name or category..."
             value={searchItem}
             onChange={(e) => setSearchItem(e.target.value)}
             className="search-input"
