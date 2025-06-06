@@ -1,21 +1,38 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export function ItemList({ items }) {
   const navigate = useNavigate();
+  const [searchItem, setSearchItem] = useState("");
 
   const handleClick = (id) => {
     navigate(`/${id}`);
   };
-  return (
+
+  const filteredItems = items.filter((item) => {
+    const lowerCaseSearch = searchItem.toLowerCase();
+    return (
+      item.name.toLowerCase().includes(lowerCaseSearch) ||
+      item.category.toLowerCase().includes(lowerCaseSearch)
+    );
+  });
+  return items ? (
     <>
       <div>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div className="search-add-container">
+          <input
+            type="text"
+            placeholder="Search by name or color..."
+            value={searchItem}
+            onChange={(e) => setSearchItem(e.target.value)}
+            className="search-input"
+          />
           <button onClick={() => navigate("/add")} className="add-btn">
             +
           </button>
         </div>
         <ul className="card-list">
-          {items.map((item) => {
+          {filteredItems.map((item) => {
             return (
               <li key={item.id} className="card">
                 <img src={item.image} alt="item-image" className="item-image" />
@@ -33,5 +50,7 @@ export function ItemList({ items }) {
         </ul>
       </div>
     </>
+  ) : (
+    <div>Loading...</div>
   );
 }
