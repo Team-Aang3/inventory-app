@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
 import apiURL from "../api";
 import "../styles/Forms.css";
 
@@ -25,7 +25,8 @@ export function UpdateForm() {
       !formData.name ||
       !formData.description ||
       !formData.price ||
-      !formData.category
+      !formData.category ||
+      !formData.image
     ) {
       setError("All fields are required.");
       return;
@@ -43,7 +44,7 @@ export function UpdateForm() {
       });
 
       //error handling
-      if (!res.ok) throw new Error("Failed to update item");
+      if (!res.ok) setError("Failed to update item.");
 
       //parse data
       const data = await res.json();

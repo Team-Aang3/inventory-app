@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import apiURL from "../api";
 import "../styles/Forms.css";
 
@@ -23,7 +23,8 @@ export function AddForm() {
       !formData.name ||
       !formData.description ||
       !formData.price ||
-      !formData.category
+      !formData.category ||
+      !formData.image
     ) {
       setError("All fields are required.");
       return;
@@ -41,7 +42,7 @@ export function AddForm() {
       });
 
       //error handling
-      if (!res.ok) throw new Error("Failed to create item");
+      if (!res.ok) setError("Failed to create item.");
 
       //parse data
       const data = await res.json();
