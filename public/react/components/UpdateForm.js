@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import apiURL from "../api";
 import "../styles/Forms.css";
@@ -12,26 +12,50 @@ export function UpdateForm() {
     image: "",
   });
 
+  const [originalItem, setOriginalItem] = useState(null);
+  const [touchedFields, setTouchedFields] = useState({});
   const [error, setError] = useState("");
   const nav = useNavigate();
   const { itemId } = useParams();
   const apiURLWithId = `${apiURL}/items/${itemId}`;
 
+  useEffect(() => {
+    async function fetchItem() {
+      try {
+        const res = await fetch(apiURLWithId);
+        const data = await res.json();
+        setOriginalItem(data);
+
+        //prefill form with existing data
+        setFormData({
+          name: data.name,
+          description: data.description,
+          price: data.price,
+          category: data.category,
+          image: data.image,
+        });
+      } catch (error) {
+        console.error("Error fetching item:", error);
+        setError("Failed to fetch item details.");
+      }
+    }
+
+    fetchItem();
+  }, [itemId]);
+
   async function handleSubmit(e) {
     e.preventDefault(); //prevent page reload
 
-    //error validation
-    if (
-      !formData.name ||
-      !formData.description ||
-      !formData.price ||
-      !formData.category ||
-      !formData.image
-    ) {
-      setError("All fields are required.");
-      return;
-    }
-    setError(""); //clear previous errors
+    if (!originalItem) return;
+
+    //only update formData if fields have changed
+    const updatedItem = {
+      name: formData.name.trim() || originalItem.name,
+      description: formData.description.trim() || originalItem.description,
+      price: formData.price || originalItem.price,
+      category: formData.category.trim() || originalItem.category,
+      image: formData.image.trim() || originalItem.image,
+    };
 
     //post fetch to update item
     try {
@@ -40,7 +64,7 @@ export function UpdateForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(updatedItem),
       });
 
       //error handling
@@ -79,7 +103,11 @@ export function UpdateForm() {
             type="text"
             value={formData.name}
             placeholder="Enter item name"
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            className={touchedFields.name ? "normal-input" : "prefilled-input"}
+            onChange={(e) => {
+              setFormData({ ...formData, name: e.target.value });
+              setTouchedFields({ ...touchedFields, name: true });
+            }}
           />
         </label>
 
@@ -88,9 +116,13 @@ export function UpdateForm() {
           <textarea
             value={formData.description}
             placeholder="Enter item description"
-            onChange={(e) =>
-              setFormData({ ...formData, description: e.target.value })
+            className={
+              touchedFields.description ? "normal-input" : "prefilled-input"
             }
+            onChange={(e) => {
+              setFormData({ ...formData, description: e.target.value });
+              setTouchedFields({ ...touchedFields, description: true });
+            }}
           />
         </label>
 
@@ -100,9 +132,11 @@ export function UpdateForm() {
             type="number"
             value={formData.price}
             placeholder="Enter item price"
-            onChange={(e) =>
-              setFormData({ ...formData, price: parseFloat(e.target.value) })
-            }
+            className={touchedFields.price ? "normal-input" : "prefilled-input"}
+            onChange={(e) => {
+              setFormData({ ...formData, price: e.target.value });
+              setTouchedFields({ ...touchedFields, price: true });
+            }}
           />
         </label>
 
@@ -112,9 +146,13 @@ export function UpdateForm() {
             type="text"
             value={formData.category}
             placeholder="Enter item category"
-            onChange={(e) =>
-              setFormData({ ...formData, category: e.target.value })
+            className={
+              touchedFields.category ? "normal-input" : "prefilled-input"
             }
+            onChange={(e) => {
+              setFormData({ ...formData, category: e.target.value });
+              setTouchedFields({ ...touchedFields, category: true });
+            }}
           />
         </label>
 
@@ -124,9 +162,11 @@ export function UpdateForm() {
             type="text"
             value={formData.image}
             placeholder="Enter item image URL"
-            onChange={(e) =>
-              setFormData({ ...formData, image: e.target.value })
-            }
+            className={touchedFields.image ? "normal-input" : "prefilled-input"}
+            onChange={(e) => {
+              setFormData({ ...formData, image: e.target.value });
+              setTouchedFields({ ...touchedFields, image: true });
+            }}
           />
         </label>
 
@@ -134,8 +174,8 @@ export function UpdateForm() {
           <button type="submit" className="formBtn">
             Update Item
           </button>
-          <button onClick={() => nav("/")} className="formBtn">
-            Back to Items
+          <button onClick={() => nav(`/${itemId}`)} className="formBtn">
+            Back to Item
           </button>
         </div>
       </form>

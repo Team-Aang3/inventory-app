@@ -67,3 +67,11 @@
   margin-bottom: 1rem;
   font-weight: bold;
 }
+
+.prefilled-input {
+  color: gray;
+}
+
+.normal-input {
+  color: black;
+}
