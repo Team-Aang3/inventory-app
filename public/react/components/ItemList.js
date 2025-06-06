@@ -8,6 +8,14 @@ export function ItemList({ items }) {
   const handleClick = (id) => {
     navigate(`/${id}`);
   };
+
+  const filteredItems = items.filter((item) => {
+    const lowerCaseSearch = searchItem.toLowerCase();
+    return (
+      item.name.toLowerCase().includes(lowerCaseSearch) ||
+      item.category.toLowerCase().includes(lowerCaseSearch)
+    );
+  });
   return items ? (
     <>
       <div>
@@ -24,7 +32,7 @@ export function ItemList({ items }) {
           </button>
         </div>
         <ul className="card-list">
-          {items.map((item) => {
+          {filteredItems.map((item) => {
             return (
               <li key={item.id} className="card">
                 <img src={item.image} alt="item-image" className="item-image" />
