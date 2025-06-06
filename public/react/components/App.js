@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router";
+import { Routes, Route, useLocation } from "react-router";
 import { Item } from "./Item";
 import { ItemList } from "./ItemList";
 import { AddForm } from "./AddForm";
@@ -10,6 +10,7 @@ import apiURL from "../api";
 
 function App() {
   const [items, setItems] = useState([]);
+  const location = useLocation();
   async function fetchItems() {
     try {
       const response = await fetch(`${apiURL}/items`);
@@ -23,7 +24,7 @@ function App() {
   useEffect(() => {
     // Fetch the items
     fetchItems();
-  }, []);
+  }, [location.pathname]);
 
   return (
     <>
