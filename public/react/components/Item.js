@@ -40,6 +40,17 @@ export function Item() {
   }, [itemId]);
 
   return item ? (
+    <>
+  <div className="top-buttons"> <button onClick={() => navigate("/")} className="btn-back">
+        Back
+      </button>
+      <button
+        onClick={() => navigate(`/update/${itemId}`)}
+        className="btn-edit"
+      >
+        Edit
+      </button></div>
+
     <div
       className="item-detail-card"
       style={{ display: "flex", alignItems: "flex-start" }}
@@ -52,15 +63,7 @@ export function Item() {
         <p className="item-price">${item.price}</p>
         <p className="item-description">{item.description}</p>{" "}
       </div>
-      <button onClick={() => navigate("/")} className="btn-back">
-        Back
-      </button>
-      <button
-        onClick={() => navigate(`/update/${itemId}`)}
-        className="btn-edit"
-      >
-        Edit
-      </button>
+      
       <button
         onClick={handleDelete}
         className="btn-delete"
@@ -69,7 +72,7 @@ export function Item() {
         {isDeleting ? "Deleting" : "Delete"}
       </button>
       {error && <div className="error-msg">{error}</div>}{" "}
-    </div>
+    </div> </>
   ) : (
     <div>Loading...</div>
   );
