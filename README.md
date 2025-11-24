@@ -1,14 +1,33 @@
 ![logo](https://user-images.githubusercontent.com/44912347/202296600-c5f247d6-9616-49db-88f0-38433429d781.jpg)
 
+# Team Members
+
+Lauren Balch, Madison DeGrezia, Jordan Harris
+
+# Video Link
+
+- https://youtu.be/9BMSiffoyaE
+
+# Wireframe link
+
+- https://excalidraw.com/#json=e-2nVeacNdx-iHLYdM16z,6knihIhaoarW6srCmBCqvw
+
 # Inventory App
 
-You are a team of developers for an e-commerce company. The Engineering team is rebuilding their inventory tracking app from the ground up. Your team has been tasked with creating a Full-Sack (front and back end) RESTful CRUD application to track the items.
+Inventory App is a full-stack web application that interacts with a RESTful API to manage and display product inventory. Users can browse the full product list, view detailed information for individual items, add new products, or update existing ones using intuitive forms. The app also supports searching by item name or category for quick and efficient navigation.
+
+# Deployment link
+
+- https://inventory-app-crjj.onrender.com
 
 ## Getting Started
 
+After forking and cloning the repository, run the following:
+
 1. `npm install`
-2. `npm run server-dev`
-3. In a seperate terminal, `npm run client-dev`
+2. `npm run seed` (runs the seed file)
+3. `npm run server-dev`
+4. In a seperate terminal, `npm run client-dev`
 
 ## Inventory App “Tiers”
 
@@ -52,9 +71,6 @@ Once you have defined your model, `npm run seed` to populate the table.
 
 ### Tier V: Bonus Stuff
 
-- Models, Routes for Users and Orders
 - As a User, I want my Inventory site to be visually stunning
 - As a User, I want to be able to search through data based on search criteria
-- As a User, I want to add items to a cart and purchase
 - As a User, I want to use the application on a mobile browser
-- As an Admin, I want all Add and Edit item requests to have server-side validations
